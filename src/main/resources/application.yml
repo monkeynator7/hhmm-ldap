@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /ldap-ad
+
+spring:
+  application:
+    name: ldap-ad-alemana
+  ldap:
+    urls: ldap://adcas3.alemana.cl:389
+    base: DC=alemana,DC=cl
+    username: SRV_HONO@alemana.cl
+    password: "C45c07r453n4Xok"
+    base-environment:
+      java.naming.security.authentication: simple
+      java.naming.referral: follow
+
+app:
+  ldap:
+    user-search-base: OU=CAS,DC=alemana,DC=cl
+    group-search-base: OU=Grupos de Trabajo,OU=CAS,DC=alemana,DC=cl
+    connection-timeout: 10000
+    read-timeout: 30000
+    domain: alemana.cl
+    required-group: CN=HonorariosMedWLS_User,OU=Grupos de Trabajo,OU=CAS,DC=alemana,DC=cl
+
+logging:
+  level:
+    com.example.ldap: DEBUG
+    org.springframework.ldap: DEBUG
+    org.springframework.web: DEBUG
